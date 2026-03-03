@@ -83,6 +83,7 @@ This table enables:
 ## ⭐ Data Model (Star Schema)
 
 ```
+https://github.com/makuwajoshua/sql-data-warehouse-project/blob/main/docs/Star%20Schema.drawio.png
               dim_customers
                      |
                      |
@@ -148,7 +149,7 @@ This project was developed as part of my Data Engineering learning journey, insp
 
 ## 👤 Author
 
-**Makuwa Makuwa**
+**Vitumbiko Makuwa**
 Industrial Engineer | Data & BI Enthusiast
 Focused on Data Engineering, Analytics Engineering, and Business Intelligence
 
