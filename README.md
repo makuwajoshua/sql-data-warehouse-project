@@ -211,9 +211,6 @@ This project was developed as part of my Data Engineering learning journey, insp
 ---
 
 ## 🚀 Future Improvements
-
-* Add date dimension table (`dim_date`)
-* Implement incremental loading
 * Build ETL pipelines
 * Connect to the Power BI dashboard
 * Add performance indexing strategy
