@@ -1,5 +1,3 @@
-# 📊 Modern Data Warehouse – Bronze → Silver → Gold Architecture**
-
 # 🏗️ Data Warehouse Layers Overview
 
 This project follows a **Bronze → Silver → Gold architecture**, a standard modern data engineering approach for building scalable and analytics-ready data systems.
