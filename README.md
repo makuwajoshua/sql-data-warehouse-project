@@ -129,179 +129,6 @@ This Gold Layer supports:
 * Data Warehouse Best Practices
 
 ---
-
-## 🙏 Acknowledgement
-
-This project was developed as part of my Data Engineering learning journey, inspired and guided by tutorials from **Data With Baraa**, whose structured explanations of modern data warehousing significantly supported the implementation of this architecture.
-
----
-
-## 🚀 Future Improvements
-
-* Add date dimension table (`dim_date`)
-* Implement incremental loading
-* Build ETL pipelines
-* Connect to the Power BI dashboard
-* Add performance indexing strategy
-* Automate deployment using CI/CD
-
----
-
-## 👤 Author
-
-Excellent 👌 — let’s elevate this into a **recruiter-grade, portfolio-level README** that:
-
-* Shows technical depth
-* Includes SQL snippets
-* Adds architecture clarity
-* Demonstrates engineering thinking
-* Positions you for Data Engineering / BI roles
-
-Below is your upgraded `README.md`.
-
----
-
-# 📊 Modern Data Warehouse Project
-
-## Gold Layer – Business-Ready Analytics Model
-
----
-
-## 🚀 Project Overview
-
-This project implements the **Gold Layer** of a modern data warehouse designed for analytical reporting and business intelligence.
-
-The Gold Layer represents the **business-facing data model**, structured using **dimensional modeling (star schema)** to support:
-
-* BI dashboards
-* Revenue reporting
-* Customer segmentation
-* Product performance analysis
-* Time-based trend analytics
-
-This project was developed as part of my SQL Data Engineering & BI journey, guided by structured learning from **Data With Baraa**.
-
----
-
-# 🏗️ Architecture Overview
-
-The data warehouse follows a **layered architecture approach**:
-
-```
-Raw Data → Cleaning/Transformation → Gold Layer (Analytics Model)
-```
-
-The **Gold Layer** contains:
-
-* 2 Dimension Tables
-* 1 Fact Table
-* Surrogate Keys
-* Business-aligned naming conventions
-* Optimized analytical structure
-
----
-
-# ⭐ Data Model – Star Schema
-
-```
-                 dim_customers
-                        |
-                        |
-dim_products  ------  fact_sales
-```
-
-### Central Fact Table:
-
-* `gold.fact_sales`
-
-### Dimension Tables:
-
-* `gold.dim_customers`
-* `gold.dim_products`
-
-This design ensures:
-
-* Optimized joins
-* Clean separation of descriptive vs transactional data
-* Scalable analytical structure
-* BI tool compatibility
-
----
-
-# 📂 Tables & Structure
-
----
-
-## 🧍 `gold.dim_customers`
-
-Stores demographic and geographic customer data.
-
-### Key Attributes:
-
-* `customer_key` (Surrogate Key)
-* `customer_id`
-* `country`
-* `gender`
-* `marital_status`
-* `birthdate`
-* `create_date`
-
-### Business Use Cases:
-
-* Customer segmentation
-* Demographic analysis
-* Geographic revenue reporting
-* Lifetime value modeling
-
----
-
-## 🛍️ `gold.dim_products`
-
-Stores product classification and attributes.
-
-### Key Attributes:
-
-* `product_key` (Surrogate Key)
-* `category`
-* `subcategory`
-* `product_line`
-* `maintenance_required`
-* `cost`
-* `start_date`
-
-### Business Use Cases:
-
-* Product category performance
-* Maintenance cost insights
-* Product lifecycle tracking
-* Margin analysis
-
----
-
-## 💰 `gold.fact_sales`
-
-Stores transactional sales records.
-
-### Key Measures:
-
-* `sales_amount`
-* `quantity`
-* `price`
-
-### Foreign Keys:
-
-* `product_key`
-* `customer_key`
-
-### Business Use Cases:
-
-* Revenue trend analysis
-* Sales forecasting inputs
-* Order fulfillment performance
-* Customer purchase behavior
-
----
-
 # 🧠 Sample SQL Implementation
 
 ### Example: Creating Product Dimension Table
@@ -382,4 +209,24 @@ LEFT JOIN gold.dim_customers cu
 ON sd.sls_cust_id = cu.customer_id
 
 ```
+
+## 🙏 Acknowledgement
+
+This project was developed as part of my Data Engineering learning journey, inspired and guided by tutorials from **Data With Baraa**, whose structured explanations of modern data warehousing significantly supported the implementation of this architecture.
+
+---
+
+## 🚀 Future Improvements
+
+* Add date dimension table (`dim_date`)
+* Implement incremental loading
+* Build ETL pipelines
+* Connect to the Power BI dashboard
+* Add performance indexing strategy
+* Automate deployment using CI/CD
+
+
+## 👤 Author Vitumbiko Makuwa
+
+
 
