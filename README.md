@@ -1,84 +1,77 @@
-# 📊 Modern Data Warehouse – Gold Layer (Analytics Model)
+# 📊 Modern Data Warehouse – Bronze → Silver → Gold Architecture**
 
-## 📌 Project Overview
+# 🏗️ Data Warehouse Layers Overview
 
-This project implements the **Gold Layer** of a modern data warehouse designed to support business intelligence, reporting, and analytics use cases.
-
-The Gold Layer represents the **business-ready data model**, structured using a **star schema design** with:
-
-* Dimension tables (descriptive attributes)
-* Fact tables (transactional metrics)
-* Surrogate keys for optimized joins
-* Cleaned and analytics-ready data structures
-
-This project was developed as part of my SQL Data Engineering & BI learning journey, with guidance and inspiration from **Data With Baraa**.
+This project follows a **Bronze → Silver → Gold architecture**, a standard modern data engineering approach for building scalable and analytics-ready data systems.
 
 ---
 
-## 🏗️ Architecture Overview
+## 🥉 Bronze Layer – Raw Data Layer
 
-The Gold Layer consists of:
+**Purpose:**
+Stores raw data exactly as received from source systems.
 
-### 1️⃣ `gold.dim_customers`
+**Key Characteristics:**
 
-Stores customer demographic and geographic information.
+* No transformations applied
+* Preserves original structure and format
+* Used for traceability and auditing
+* Acts as a backup and reprocessing layer
 
-**Key Features:**
-
-* Surrogate key (`customer_key`)
-* Demographic attributes (gender, marital status, birthdate)
-* Geographic data (country)
-* Customer identification tracking
-
-This table enables customer segmentation, demographic analysis, and geographic reporting.
+**Why it matters:**
+It ensures data lineage, debugging capability, and protection against data loss or transformation errors.
 
 ---
 
-### 2️⃣ `gold.dim_products.`
+## 🥈 Silver Layer – Cleaned & Transformed Layer
 
-Stores structured product-level information.
+**Purpose:**
+Cleans, standardizes, and prepares data for analytical modeling.
 
-**Key Features:**
+**Key Characteristics:**
 
-* Surrogate key (`product_key`)
-* Category & subcategory hierarchy
-* Product line classification
-* Maintenance tracking
-* Cost and availability start date
+* Handles missing values
+* Removes duplicates
+* Standardizes formats (e.g., dates, text)
+* Applies business rules
+* Improves data quality
 
-This dimension supports:
-
-* Product performance analysis
-* Category-level reporting
-* Maintenance-based insights
-* Product lifecycle analysis
+**Why it matters:**
+This layer ensures consistent, reliable, and structured data before it is modeled for analytics.
 
 ---
 
-### 3️⃣ `gold.fact_sales.`
+## 🥇 Gold Layer – Business & Analytics Layer
 
-Stores transactional sales data.
+**Purpose:**
+Provides business-ready, analytics-optimized data structures.
 
-**Key Metrics:**
+**Key Characteristics:**
 
-* Sales amount
-* Quantity
-* Unit price
-* Order, shipping, and due dates
+* Star schema design
+* Fact and dimension tables
+* Surrogate keys
+* Optimized for BI tools (e.g., Power BI)
 
-**Foreign Keys:**
-
-* `product_key` → `dim_products`
-* `customer_key` → `dim_customers`
-
-This table enables:
-
-* Revenue analysis
-* Customer purchasing behavior insights
-* Product performance tracking
-* Time-based trend analysis
+**Why it matters:**
+This layer enables fast analytical queries, reporting, KPI tracking, and dashboard creation.
 
 ---
+
+# 🔄 Flow Summary
+
+```
+Source Systems
+      ↓
+Bronze (Raw)
+      ↓
+Silver (Cleaned)
+      ↓
+Gold (Analytics Model)
+      ↓
+BI & Reporting
+```
+
 
 ## ⭐ Data Model (Star Schema)
 
@@ -218,6 +211,7 @@ This project was developed as part of my Data Engineering learning journey, insp
 
 
 ## 👤 Author Vitumbiko Makuwa
+
 
 
 
