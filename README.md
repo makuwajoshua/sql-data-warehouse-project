@@ -149,8 +149,237 @@ This project was developed as part of my Data Engineering learning journey, insp
 
 ## 👤 Author
 
-**Vitumbiko Makuwa**
-Industrial Engineer | Data & BI Enthusiast
-Focused on Data Engineering, Analytics Engineering, and Business Intelligence
+Excellent 👌 — let’s elevate this into a **recruiter-grade, portfolio-level README** that:
+
+* Shows technical depth
+* Includes SQL snippets
+* Adds architecture clarity
+* Demonstrates engineering thinking
+* Positions you for Data Engineering / BI roles
+
+Below is your upgraded `README.md`.
 
 ---
+
+# 📊 Modern Data Warehouse Project
+
+## Gold Layer – Business-Ready Analytics Model
+
+---
+
+## 🚀 Project Overview
+
+This project implements the **Gold Layer** of a modern data warehouse designed for analytical reporting and business intelligence.
+
+The Gold Layer represents the **business-facing data model**, structured using **dimensional modeling (star schema)** to support:
+
+* BI dashboards
+* Revenue reporting
+* Customer segmentation
+* Product performance analysis
+* Time-based trend analytics
+
+This project was developed as part of my SQL Data Engineering & BI journey, guided by structured learning from **Data With Baraa**.
+
+---
+
+# 🏗️ Architecture Overview
+
+The data warehouse follows a **layered architecture approach**:
+
+```
+Raw Data → Cleaning/Transformation → Gold Layer (Analytics Model)
+```
+
+The **Gold Layer** contains:
+
+* 2 Dimension Tables
+* 1 Fact Table
+* Surrogate Keys
+* Business-aligned naming conventions
+* Optimized analytical structure
+
+---
+
+# ⭐ Data Model – Star Schema
+
+```
+                 dim_customers
+                        |
+                        |
+dim_products  ------  fact_sales
+```
+
+### Central Fact Table:
+
+* `gold.fact_sales`
+
+### Dimension Tables:
+
+* `gold.dim_customers`
+* `gold.dim_products`
+
+This design ensures:
+
+* Optimized joins
+* Clean separation of descriptive vs transactional data
+* Scalable analytical structure
+* BI tool compatibility
+
+---
+
+# 📂 Tables & Structure
+
+---
+
+## 🧍 `gold.dim_customers`
+
+Stores demographic and geographic customer data.
+
+### Key Attributes:
+
+* `customer_key` (Surrogate Key)
+* `customer_id`
+* `country`
+* `gender`
+* `marital_status`
+* `birthdate`
+* `create_date`
+
+### Business Use Cases:
+
+* Customer segmentation
+* Demographic analysis
+* Geographic revenue reporting
+* Lifetime value modeling
+
+---
+
+## 🛍️ `gold.dim_products`
+
+Stores product classification and attributes.
+
+### Key Attributes:
+
+* `product_key` (Surrogate Key)
+* `category`
+* `subcategory`
+* `product_line`
+* `maintenance_required`
+* `cost`
+* `start_date`
+
+### Business Use Cases:
+
+* Product category performance
+* Maintenance cost insights
+* Product lifecycle tracking
+* Margin analysis
+
+---
+
+## 💰 `gold.fact_sales`
+
+Stores transactional sales records.
+
+### Key Measures:
+
+* `sales_amount`
+* `quantity`
+* `price`
+
+### Foreign Keys:
+
+* `product_key`
+* `customer_key`
+
+### Business Use Cases:
+
+* Revenue trend analysis
+* Sales forecasting inputs
+* Order fulfillment performance
+* Customer purchase behavior
+
+---
+
+# 🧠 Sample SQL Implementation
+
+### Example: Creating Product Dimension Table
+
+```sql
+CREATE VIEW gold.dim_products AS
+SELECT 
+	ROW_NUMBER () OVER (ORDER BY pn.prd_start_date, pn.prd_key) AS product_key,  -- Creating a Surrogate Key
+
+	pn.prd_id AS product_id,
+	pn.prd_key AS product_number,
+	pn.prd_nm AS product_name,
+	pn.cat_id AS category_id,
+
+	pc.px_category AS category,
+	pc.px_subcat AS subcategory,
+	pc.px_maintenance AS maintenance,
+
+	pn.prd_cost AS product_cost,
+	pn.prd_line AS product_line,
+	pn.prd_start_date AS start_date,
+	pn.prd_end_date AS end_date
+
+FROM silver.crm_prd_info pn
+LEFT JOIN silver.erp_px_cat pc
+ON pn.cat_id = pc.px_id
+WHERE prd_end_date IS NULL 
+```
+### Example: Creating Customer Dimension Table
+
+```sql
+
+CREATE VIEW gold.dim_customers AS
+SELECT
+	ROW_NUMBER () OVER (ORDER BY ci.cust_id) AS customer_key,
+	ci.cust_id AS customer_id,
+	ci.cust_key AS customer_number,
+	ci.cust_firstname AS first_name,
+	ci.cust_lastname AS last_name,
+	la.cust_country AS country,
+	ci.cust_material_status AS marital_status,
+
+	CASE WHEN ci.cust_gender != 'n/a' THEN ci.cust_gender  --CRM is the Master for gender Info
+		ELSE COALESCE (ca.cust_gender, 'n/a')
+
+	END AS new_gender,
+	ca.cust_birth_date AS birth_date,
+	ci.cust_create_date AS create_date
+	
+FROM silver.crm_cust_info  ci
+LEFT JOIN silver.erp_cust_info  ca
+ON ci.cust_key = ca.cust_id
+LEFT JOIN silver.erp_loc_info la
+ON ci.cust_key = la.cust_id
+	
+```
+
+### Example: Creating Sales Fact Table
+
+```sql
+CREATE View gold.fact_sales AS
+SELECT 
+sd.sls_order_number AS order_number,
+pr.product_key AS product_key,
+cu.customer_key AS customer_key,
+sd.sls_order_date AS order_date,
+sd.sls_ship_date AS shipping_date,
+sd.sls_due_date AS due_date,
+sd.sls_sales AS sales_amount,
+sd.sls_quantity AS quantity,
+sd.sls_price AS price
+
+FROM silver.crm_sls_info sd
+LEFT JOIN gold.dim_products pr
+ON sd.sls_product_key = pr.product_number	
+
+LEFT JOIN gold.dim_customers cu
+ON sd.sls_cust_id = cu.customer_id
+
+```
+
