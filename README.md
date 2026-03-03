@@ -185,7 +185,7 @@ ON sd.sls_cust_id = cu.customer_id
 
 ## 🙏 Acknowledgement
 
-This project was developed as part of my Data Engineering learning journey, inspired and guided by tutorials from **Data With Baraa**, whose structured explanations of modern data warehousing significantly supported the implementation of this architecture.
+This project was developed as part of my Data Engineering learning journey with **'Data with Baraa.'**
 
 ---
 
