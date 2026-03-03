@@ -59,19 +59,7 @@ This layer enables fast analytical queries, reporting, KPI tracking, and dashboa
 ---
 
 # 🔄 Flow Summary
-
-```
-Source Systems
-      ↓
-Bronze (Raw)
-      ↓
-Silver (Cleaned)
-      ↓
-Gold (Analytics Model)
-      ↓
-BI & Reporting
-```
-
+![Data Flow](https://github.com/makuwajoshua/sql-data-warehouse-project/blob/main/Data%20Flow.PNG?raw=true)
 
 ## ⭐ Data Model (Star Schema)
 
