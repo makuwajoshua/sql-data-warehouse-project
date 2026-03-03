@@ -83,11 +83,7 @@ This table enables:
 ## ⭐ Data Model (Star Schema)
 
 ```
-https://github.com/makuwajoshua/sql-data-warehouse-project/blob/main/docs/Star%20Schema.drawio.png
-              dim_customers
-                     |
-                     |
-dim_products ---- fact_sales
+![Star Schema](https://github.com/makuwajoshua/sql-data-warehouse-project/blob/main/Star%20Schema.PNG?raw=true)
 ```
 
 * `fact_sales` is the central transactional table.
