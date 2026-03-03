@@ -82,9 +82,7 @@ This table enables:
 
 ## ⭐ Data Model (Star Schema)
 
-```
 ![Star Schema](https://github.com/makuwajoshua/sql-data-warehouse-project/blob/main/Star%20Schema.PNG?raw=true)
-```
 
 * `fact_sales` is the central transactional table.
 * Dimension tables provide descriptive context.
